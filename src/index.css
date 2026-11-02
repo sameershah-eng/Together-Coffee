@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+@theme {
+  --color-espresso: #1A0F0A;
+  --color-roast: #3B2218;
+  --color-mocha: #6F4A33;
+  --color-cream: #F6EEE3;
+  --color-amber-gold: #D9A441;
+  --color-saffron: #E8873A;
+  --color-terracotta: #B5502F;
+
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: "DM Sans", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-display: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    background-color: #1A0F0A;
+    color: #F6EEE3;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #D9A441;
+    color: #1A0F0A;
+  }
+}
+
+/* Safe area insets for notched phones & home indicators */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* Subtle grain noise texture */
+.bg-grain {
+  background-image: radial-gradient(rgba(217, 164, 65, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Gold Gradient helper */
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #E8873A 0%, #D9A441 50%, #F2C76E 100%);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #E8873A 0%, #D9A441 50%, #F2C76E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hardware accelerated transitions */
+.gpu-accel {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Light sweep shimmer for primary attention grabber */
+@keyframes shineSweep {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+  }
+  25%, 100% {
+    transform: translateX(300%) skewX(-25deg);
+  }
+}
+
+.animate-shine-sweep {
+  animation: shineSweep 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* Subtle breathing glow for CTAs & active badges */
+@keyframes attentionPulse {
+  0%, 100% {
+    box-shadow: 0 0 14px rgba(217, 164, 65, 0.35), 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 26px rgba(232, 135, 58, 0.55), 0 6px 25px rgba(217, 164, 65, 0.3);
+  }
+}
+
+.animate-attention-pulse {
+  animation: attentionPulse 2.8s ease-in-out infinite;
+}
+
+/* Glowing amber border animation */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(217, 164, 65, 0.25), 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(232, 135, 58, 0.45), 0 8px 30px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.animate-glow-pulse {
+  animation: pulseGlow 3.5s ease-in-out infinite;
+}
+
+/* Live beacon ripple */
+@keyframes beaconRipple {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(52, 211, 153, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+  }
+}
+
+.animate-beacon-ripple {
+  animation: beaconRipple 2s infinite;
+}
+
+/* Subtle steam animation */
+@keyframes steamFloat {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(-9px) scaleX(1.3);
+    opacity: 0;
+  }
+}
+
+.animate-steam-1 {
+  animation: steamFloat 1.8s ease-out infinite;
+}
+.animate-steam-2 {
+  animation: steamFloat 1.8s ease-out 0.4s infinite;
+}
+.animate-steam-3 {
+  animation: steamFloat 1.8s ease-out 0.8s infinite;
+}
+
+/* Subtle warm photo filter to harmonize all images */
+.warm-filter {
+  filter: saturate(1.05) contrast(1.03);
+  transition: filter 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Print menu styles */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
